@@ -243,3 +243,268 @@
     }
 
 }
+//namespace fourth_online_secion
+//{
+//    public class Instructor
+//    {
+        
+//        public int InstructorId { get; set; }
+//        public string Name { get; set; }
+//        public string specialization { get; set; }
+//        public Instructor(int instructorId=1000, string name="no name", string specialization="no data")
+//        {
+//            InstructorId = instructorId;
+//            Name = name;
+//            this.specialization = specialization;
+//        }
+
+       
+//        public string PrintDetaills()
+//        {
+//            return $" instructor id : {InstructorId},Name: {Name}, specialization: {specialization}";
+//        }
+//    }
+//    public class Course
+//    {
+//        public Course(int courseId=2000, string title="no title", Instructor? instructor=null)// هنا بنستخدم ال nullable type علشان نقدر نستقبل null value في حالة عدم وجود instructor
+//        {
+//            CourseId = courseId;
+//            Title = title;
+//            Instructor = instructor ?? new Instructor();// if instructor is null, create a new Instructor object with default values
+//            //if (instructor != null)
+//            //Instructor = instructor;
+//            //else
+//            //    Instructor =  new Instructor();
+//        }
+
+//        public int CourseId { get; set; }
+//        public string Title { get; set; }
+//        public Instructor Instructor { get; set; } 
+
+//        public string PrintDetaills()
+//        {
+//            return $"Course ID: {CourseId}, Title: {Title} , Instructor :\n {Instructor.PrintDetaills}";
+            
+//        }
+
+//    }
+//    public class Student
+//    {
+//        public int StudentId { get; set; }
+//        public string Name { get; set; }
+//        public int Age { get; set; }
+//        public string Grade { get; set; }
+//        public Student(string name, int age, string grade)
+//        {
+//            Name = name;
+//            Age = age;
+//            Grade = grade;
+//        }
+//        public string DisplayInfo()
+//        {
+//            return$"Name: {Name}, Age: {Age}, Grade: {Grade}";
+//        }
+        
+//    }
+//    internal class School
+//    {
+//        public School()
+//        {
+//            Students = new List<Student>();
+//            Courses = new List<Course>();
+//            Instructors = new List<Instructor>();
+//        }
+
+//        List<Student> Students { get; set; }
+//        List<Course> Courses { get; set; }
+//        List<Instructor> Instructors { get; set; }
+
+//        public bool AddStudent(Student std)
+//        {
+//            if (Students.Contains(std)) return false;
+
+//            Students.Add(std);
+//            return true;
+//        }
+
+//        public Student? FindStudent(int stdId)
+//        {
+//            for (int i = 0; i < Students.Count; i++)
+//            {
+//                if (Students[i].StudentId == stdId)
+//                {
+//                    return Students[i];
+//                }
+//            }
+//            return null;
+//        }
+
+
+//        public Course? FindCourse(int crsId)
+//        {
+//            for (int i = 0; i < Courses.Count; i++)
+//            {
+//                if (Courses[i].CourseId == crsId)
+//                {
+//                    return Courses[i];
+//                }
+//            }
+//            return null;
+//        }
+
+//        public bool AddCourse(Course crs)
+//        {
+//            if (Courses.Contains(crs)) return false;
+
+//            Courses.Add(crs);
+//            return true;
+//        }
+
+//        public bool AddInstructor(Instructor ins)
+//        {
+//            if (Instructors.Contains(ins)) return false;
+
+//            Instructors.Add(ins);
+//            return true;
+//        }
+
+
+
+
+//        public Instructor? FindInstructor(int insId)
+//        {
+//            for (int i = 0; i < Instructors.Count; i++)
+//            {
+//                if (Instructors[i].InstructorId == insId)
+//                {
+//                    return Instructors[i];
+//                }
+//            }
+//            return null;
+//        }
+
+
+//        public bool EnrollStdeuntAndCourse(int stdId, int crsId)
+//        {
+//            Student? std = FindStudent(stdId);
+//            Course? crs = FindCourse(crsId);
+//            if (std != null && crs != null)
+//            {
+//                AddCourse(crs);
+//                AddStudent(std);
+//                return true;
+//            }
+//            return false;
+
+//        }
+//        public void ShowAllStudents()
+//        {
+//            for (int i = 0; i < Students.Count; i++)
+//            {
+//                Console.WriteLine(Students[i].DisplayInfo());
+//            }
+//        }
+//        public void ShowAllInstructors()
+//        {
+//            for (int i = 0; i < Instructors.Count; i++)
+//            {
+//                Console.WriteLine(Instructors[i].PrintDetaills());
+//            }
+//        }
+//        public void ShowAllCourses()
+//        {
+//            for (int i = 0; i < Courses.Count; i++)
+//            {
+//                Console.WriteLine(Courses[i].PrintDetaills());
+//            }
+//        }
+//        public Student? FindStudentByIdOrName( int id ,string name)
+//        {
+//            for (int i = 0; i < Students.Count; i++)
+//            {
+//                if (Students[i].StudentId == id || Students[i].Name == name )
+//                {
+//                    return Students[i];
+//                }
+//            }
+//            return null;
+//        }
+//        public Course? FindCourseByIdOrName(int id, string name)
+//        {
+//            for (int i = 0; i < Courses.Count; i++)
+//            {
+//                if (Courses[i].CourseId == id || Courses[i].Title == name)
+//                {
+//                    return Courses[i];
+//                }
+//            }
+//            return null;
+//        }
+//    }
+
+//    internal class Program
+//    {
+//        static void Main(string[] args)
+//        {
+//            School school = new School();
+//            int op = 0;
+//            while (op != 10) 
+//            {
+//                Console.WriteLine( " student management\n\n");
+//                Console.WriteLine("1. Add Student");
+//                Console.WriteLine("2. Add Instructor");
+//                Console.WriteLine("3. Add Course");
+//                Console.WriteLine("4. Enroll Student in Course");
+//                Console.WriteLine("5. Show All Students");
+//                Console.WriteLine("6. Show All Instructors");
+//                Console.WriteLine("7. Show All Courses");
+//                Console.WriteLine("8. Find Student By ID Or Name");
+//                Console.WriteLine("9. Find Course By ID Or Name");
+//                Console.WriteLine("10. Exit\n");
+//                Console.Write("Enter your choice: ");
+//                op =Convert .ToInt32(Console.ReadLine());
+//                switch (op)
+//                {
+//                    case 1:
+//                        Console.WriteLine( school.AddStudent(new Student("John Doe", 20, "A")));
+//                        break;
+//                    case 2:
+//                        Console.WriteLine(school.AddInstructor(new Instructor(1001, "Dr. Smith", "Mathematics")));
+//                        break;
+//                    case 3:
+//                        Console.WriteLine(school.AddCourse(new Course(2001, "Calculus", new Instructor(1001, "Dr. Smith", "Mathematics"))));
+//                        break;
+//                    case 4:
+//                        Console.WriteLine(school.EnrollStdeuntAndCourse(1000, 2000));
+//                        break;
+//                    case 5:
+//                        school.ShowAllStudents();
+//                        break;
+//                    case 6:
+//                        school.ShowAllInstructors();
+//                        break;
+//                    case 7:
+//                        school.ShowAllCourses();
+//                        break;
+//                    case 8:
+//                        Console.Write("Enter Student ID or Name: ");
+//                        string input = Console.ReadLine();
+//                        Console.WriteLine(school.FindStudentByIdOrName(20, input)); // Assuming 0 is a placeholder for ID
+//                        break;
+//                    case 9:
+//                        Console.Write("Enter Course ID or Name: ");
+//                        string courseInput = Console.ReadLine();
+//                        Console.WriteLine(school.FindCourseByIdOrName(2000, courseInput)); // Assuming 0 is a placeholder for ID
+//                        break;
+//                        case 10:
+//                        Console.WriteLine( "Exiting...");
+//                        break;
+//                        default:
+//                        Console.WriteLine("Invalid choice. Please try again.");
+//                        break;
+
+//                }
+//            }
+//        }
+//    }
+//}
