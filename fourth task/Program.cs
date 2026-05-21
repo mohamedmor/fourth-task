@@ -243,7 +243,7 @@
     }
 
 }
-//namespace fourth_online_secion
+//namespace bonus task
 //{
 //    public class Instructor
 //    {
