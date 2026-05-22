@@ -86,7 +86,9 @@
     public class AccountUtil
     {
         // Utility helper functions for Account class
-        public static void Deposit(List<Account> accounts, double amount)
+        // Using Generics to allow operations on any type of Account
+
+        public static void Deposit <T>(List<T> accounts, double amount) where T : Account
         {
             Console.WriteLine("\n=== Depositing to Accounts =================================");
             foreach (var acc in accounts)
@@ -98,7 +100,7 @@
             }
         }
 
-        public static void Withdraw(List<Account> accounts, double amount)
+        public static void Withdraw <T>(List<T> accounts, double amount) where T : Account
         {
             Console.WriteLine("\n=== Withdrawing from Accounts ==============================");
             foreach (var acc in accounts)
@@ -109,85 +111,7 @@
                     Console.WriteLine($"Failed Withdrawal of {amount} from {acc}");
             }
         }
-
-        // Helper functions for SavingsAccount
-
-        public static void DepositSavings(List<SavingsAccount> accounts, double amount)
-        {
-            Console.WriteLine("\n=== Depositing to Savings Accounts =================================");
-            foreach (var acc in accounts)
-            {
-                if (acc.Deposit(amount))
-                    Console.WriteLine($"Deposited {amount} to {acc}");
-                else
-                    Console.WriteLine($"Failed Deposit of {amount} to {acc}");
-            }
-        }
-
-        public static void WithdrawSavings(List<SavingsAccount> accounts, double amount)
-        {
-            Console.WriteLine("\n=== Withdrawing from Savings Accounts ==============================");
-            foreach (var acc in accounts)
-            {
-                if (acc.Withdraw(amount))
-                    Console.WriteLine($"Withdrew {amount} from {acc}");
-                else
-                    Console.WriteLine($"Failed Withdrawal of {amount} from {acc}");
-            }
-        }
-
-        // Helper functions for CheckingAccount
-        public static void DepositChecking(List<CheckingAccount> accounts, double amount)
-        {
-            Console.WriteLine("\n=== Depositing to Checking Accounts =================================");
-            foreach (var acc in accounts)
-            {
-                if (acc.Deposit(amount))
-                    Console.WriteLine($"Deposited {amount} to {acc}");
-                else
-                    Console.WriteLine($"Failed Deposit of {amount} to {acc}");
-            }
-        }
-
-        public static void WithdrawChecking(List<CheckingAccount> accounts, double amount)
-        {
-            Console.WriteLine("\n=== Withdrawing from Checking Accounts ==============================");
-            foreach (var acc in accounts)
-            {
-                if (acc.Withdraw(amount))
-                    Console.WriteLine($"Withdrew {amount} from {acc}");
-                else
-                    Console.WriteLine($"Failed Withdrawal of {amount} from {acc}");
-            }
-        }
-
-        // Helper functions for TrustAccount
-        public static void DepositTrust(List<TrustAccount> accounts, double amount)
-        {
-            Console.WriteLine("\n=== Depositing to Trust Accounts =================================");
-            foreach (var acc in accounts)
-            {
-                if (acc.Deposit(amount))
-                    Console.WriteLine($"Deposited {amount} to {acc}");
-                else
-                    Console.WriteLine($"Failed Deposit of {amount} to {acc}");
-            }
-        }
-
-        public static void WithdrawTrust(List<TrustAccount> accounts, double amount)
-        {
-            Console.WriteLine("\n=== Withdrawing from Trust Accounts ==============================");
-            foreach (var acc in accounts)
-            {
-                if (acc.Withdraw(amount))
-                    Console.WriteLine($"Withdrew {amount} from {acc}");
-                else
-                    Console.WriteLine($"Failed Withdrawal of {amount} from {acc}");
-            }
-        }
     }
-
-
 
     internal class Program
     {
@@ -210,8 +134,15 @@
             savAccounts.Add(new SavingsAccount("Batman", 2000));
             savAccounts.Add(new SavingsAccount("Wonderwoman", 5000, 5.0));
 
-            AccountUtil.DepositSavings(savAccounts, 1000);
-            AccountUtil.WithdrawSavings(savAccounts, 2000);
+            List<SavingsAccount> savAccounts2 = new List<SavingsAccount>()
+              {
+               new SavingsAccount(),
+               new SavingsAccount("Superman2"),
+               new SavingsAccount("Batman2", 2000),
+               new SavingsAccount("Wonderwoman2", 5000, 5.0)
+              };
+            AccountUtil.Deposit(savAccounts2, 1000);
+            AccountUtil.Withdraw(savAccounts2, 2000);
 
             // Checking
             var checAccounts = new List<CheckingAccount>();
@@ -220,9 +151,16 @@
             checAccounts.Add(new CheckingAccount("Moe2", 2000));
             checAccounts.Add(new CheckingAccount("Curly2", 5000));
 
-            AccountUtil.DepositChecking(checAccounts, 1000);
-            AccountUtil.WithdrawChecking(checAccounts, 2000);
-            AccountUtil.WithdrawChecking(checAccounts, 2000);
+            List<CheckingAccount> checAccounts2 = new List<CheckingAccount>()
+             {
+               new CheckingAccount(),
+               new CheckingAccount("Larry3"),
+               new CheckingAccount("Moe3", 2000),
+               new CheckingAccount("Curly3", 5000)
+            };
+             AccountUtil.Deposit(checAccounts2, 1000);
+             AccountUtil.Withdraw(checAccounts2, 2000);
+             AccountUtil.Withdraw(checAccounts2, 2000);
 
             // Trust
             var trustAccounts = new List<TrustAccount>();
@@ -231,11 +169,19 @@
             trustAccounts.Add(new TrustAccount("Batman2", 2000));
             trustAccounts.Add(new TrustAccount("Wonderwoman2", 5000));
 
-            AccountUtil.DepositTrust(trustAccounts, 1000);
-            AccountUtil.DepositTrust(trustAccounts, 6000);
-            AccountUtil.WithdrawTrust(trustAccounts, 2000);
-            AccountUtil.WithdrawTrust(trustAccounts, 3000);
-            AccountUtil.WithdrawTrust(trustAccounts, 500);
+            List<TrustAccount> trustAccounts2 = new List<TrustAccount>()
+            { 
+              new TrustAccount(),
+              new TrustAccount("Superman3"),
+              new TrustAccount("Batman3", 2000),
+              new TrustAccount("Wonderwoman3", 5000)
+
+           };
+           AccountUtil.Deposit(trustAccounts2, 1000);
+           AccountUtil.Deposit(trustAccounts2, 6000);
+           AccountUtil.Withdraw(trustAccounts2, 2000);
+           AccountUtil.Withdraw(trustAccounts2, 3000);
+           AccountUtil.Withdraw(trustAccounts2, 500);
 
             Console.WriteLine();
 
