@@ -1,3 +1,5 @@
+ هو اني بعمل معالجة لاي خطا ممكن يحصل اثناء تنفيذ البرنامج بسبب ان اليوزر يدخل بيانات خطا زي القسمه علي صفر او انه يطلع خارج حدود الاراي فبستخدم  try-catch
+
 using System.Threading.Channels;
 
 namespace search_task_exception
@@ -7,7 +9,8 @@ namespace search_task_exception
         static void Main(string[] args)
         {
             //try
-            //    {
+        //  هنا الكود اللي ممكن تحصله مشكله 
+            //    {     
             //        List<int> l1 = new List<int>() ;
             //        Console.WriteLine("enter number of elements");
             //        int n=Convert.ToInt32(Console.ReadLine());
@@ -21,7 +24,8 @@ namespace search_task_exception
             //            }
             //        l1.Add(number);
             //        }
-            //        Console.WriteLine("Number added successfully.")     }
+            //        Console.WriteLine("Number added successfully.")     } 
+            //هنا بعالج الخطا باني اظهر رساله بالخطا يفهمها اليوزر فالبرنامج ميقفلش واليوزر يدخل بيانات تاني
             //    catch (Exception ex)  {Console.WriteLine("An error occurred: " + ex.Message);}
             Console.WriteLine("Enter a string:");
             string input = Console.ReadLine();
